@@ -5,9 +5,10 @@ import router from './router'
 import store from './store'
 import Search from '/src/components/search/index'
 import PromptResume from '/src/components/prompt-resume/index'
+import JrButton from '@/components/button/button'
 
 
-
+Vue.component(JrButton.name,JrButton)
 Vue.component(Search.name, Search)
 Vue.component(PromptResume.name, PromptResume)
 

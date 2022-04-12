@@ -1,13 +1,56 @@
 <template>
-  <div>111</div>
+  <div class="page-search">
+    <!-- <gheader :examplename="exampleName" :headerIsShow="false"></gheader> -->
+    <mt-search autofocus v-model="value"
+               :result="filterResult">
+      <mt-cell
+          v-for="(item,i) in filterResult"
+          :key="i"
+          :title="item"
+          @click.native="searchItem(i)">
+        <!-- :value="item.title" -->
+      </mt-cell>
+    </mt-search>
+    <gfooter></gfooter>
+  </div>
 </template>
-
 <script>
 export default {
-  name: 'search',
+  name: 'Search',
+  data() {
+    return {
+      exampleName: 'Search',
+      value: '',
+      defaultResult: [
+        'Apple',
+        'Banana',
+        'Orange',
+        'Durian',
+        'Lemon',
+        'Peach',
+        'Cherry',
+        'Berry',
+        'Core',
+        'Fig',
+        'Haw',
+        'Melon',
+        'Plum',
+        'Pear',
+        'Peanut',
+        'Other'
+      ]
+    }
+  },
+  computed: {
+    filterResult() {
+      // let R = this.defaultResult.filter(value => new RegExp(this.value, 'i').test(value));
+      return this.defaultResult.filter(value => new RegExp(this.value, 'i').test(value));
+    }
+  },
+  methods: {
+    searchItem(i) {
+      this.value = this.filterResult[i];
+    }
+  }
 }
 </script>
-
-<style scoped>
-
-</style>
